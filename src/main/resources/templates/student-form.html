@@ -1,0 +1,69 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Form Sinh Viên</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 20px;
+      }
+      h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 8px 15px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Form Sinh Viên</h2>
+
+    <form th:action="@{/students/save}" th:object="${student}" method="post">
+      <!-- Chỉ hiển thị hidden id khi edit -->
+      <div th:if="${student.id != null}">
+        <input type="hidden" th:field="*{id}" />
+      </div>
+
+      <label>Tên:</label>
+      <input type="text" th:field="*{name}" required />
+
+      <label>Email:</label>
+      <input type="email" th:field="*{email}" required />
+
+      <label>Tuổi:</label>
+      <input type="number" th:field="*{age}" required />
+
+      <button type="submit">Lưu</button>
+      <button type="button" onclick="window.location.href = '/students'">
+        Quay Lại
+      </button>
+    </form>
+  </body>
+</html>

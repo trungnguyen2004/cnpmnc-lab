@@ -1,0 +1,65 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chi Tiết Sinh Viên</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 20px;
+      }
+      h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+      p {
+        margin-bottom: 10px;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 8px 15px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Chi Tiết Sinh Viên</h2>
+
+    <p>ID: <span th:text="${student.id}"></span></p>
+    <p>Tên: <span th:text="${student.name}"></span></p>
+    <p>Email: <span th:text="${student.email}"></span></p>
+    <p>Tuổi: <span th:text="${student.age}"></span></p>
+
+    <button
+      onclick="
+        window.location.href =
+          '/students/edit/' + document.getElementById('studentId').value
+      "
+    >
+      Chỉnh Sửa
+    </button>
+
+    <form
+      th:action="@{/students/delete/{id}(id=${student.id})}"
+      method="post"
+      onsubmit="return confirm('Bạn có chắc muốn xóa?');"
+      style="display: inline"
+    >
+      <input type="hidden" id="studentId" th:value="${student.id}" />
+      <button type="submit">Xóa</button>
+    </form>
+
+    <button type="button" onclick="window.location.href = '/students'">
+      Quay Lại
+    </button>
+  </body>
+</html>

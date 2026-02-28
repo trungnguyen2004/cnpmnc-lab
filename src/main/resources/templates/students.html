@@ -1,0 +1,91 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <!-- Khai bao namespace de dung th:* -->
+  <head>
+    <meta charset="UTF-8" />
+    <title>Danh Sách Sinh Viên</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 20px;
+      }
+      h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+      form {
+        margin-bottom: 20px;
+      }
+      input[type="text"] {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Danh Sách Sinh Viên (SSR)</h1>
+    <form action="/students" method="GET">
+      <input type="text" name="keyword" placeholder="Nhập tên..." />
+      <button type="submit">Tìm</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Họ và Tên</th>
+          <th>Email</th>
+          <th>Tuổi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Cu phap Thymeleaf: Duyet qua danh sach "dsSinhVien" -->
+        <!-- th:each="bien_tam : ${key_trong_model}" -->
+        <tr
+          th:each="student : ${dsSinhVien}"
+          th:style="${student.age < 20} ? 'color:red' : ''"
+        >
+          <td th:text="${student.id}">ID Mau</td>
+          <td th:text="${student.name}">Ten Mau</td>
+          <td th:text="${student.email}">Email Mau</td>
+          <td th:text="${student.age}">0</td>
+          <td>
+            <a th:href="@{/students/{id}(id=${student.id})}"
+              ><button type="button" class="btn-info">Xem Chi Tiết</button></a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top: 20px">
+      <a href="/students/new"><button type="button">Thêm Mới</button></a>
+    </div>
+  </body>
+</html>
