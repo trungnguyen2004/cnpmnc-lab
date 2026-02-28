@@ -1,5 +1,11 @@
 # cnpmnc-lab
 
+## Thông tin nhóm
+
+| Họ và tên | MSSV |
+|-----------|------|
+| Nguyễn Chí Trung | 2213696 |
+
 ## Lab 1
 
 ### Giải thích lỗi `UNIQUE constraint failed`
