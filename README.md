@@ -130,3 +130,19 @@ Giá trị create có nghĩa là mỗi khi ứng dụng khởi động, Hibernat
 3. Không giữ lại dữ liệu cũ.
 
 Vì vậy, mặc dù file student.db vẫn tồn tại, nhưng các bảng bên trong đã bị xóa và tạo lại, dẫn đến toàn bộ dữ liệu trước đó bị mất.
+
+## Lab 4
+
+### Giao diện Web Application
+
+#### Danh sách sinh viên
+
+![Student List](images/lab-4-site-student-list.png)
+
+#### Form thêm/cập nhật sinh viên
+
+![Student Form](images/lab-4-site-student-form.png)
+
+#### Chi tiết sinh viên
+
+![Student Detail](images/lab-4-site-student-detail.png)

@@ -48,6 +48,11 @@
       button:hover {
         background-color: #45a049;
       }
+      .underage {
+        background-color: #ffcccc;
+        color: #cc0000;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
@@ -70,7 +75,7 @@
         <!-- th:each="bien_tam : ${key_trong_model}" -->
         <tr
           th:each="student : ${dsSinhVien}"
-          th:style="${student.age < 20} ? 'color:red' : ''"
+          th:class="${student.age < 18} ? 'underage' : ''"
         >
           <td th:text="${student.id}">ID Mau</td>
           <td th:text="${student.name}">Ten Mau</td>
