@@ -15,67 +15,89 @@
 ### Chạy Local (Development Mode)
 
 Bước 1: Clone repository
+
+```bash
 git clone https://github.com/trungnguyen2004/cnpmnc-lab.git
-cd student-management
+cd cnpmnc-lab
+```
 
 Bước 2: Cấu hình Database
 
 Tạo file .env tại thư mục gốc của project:
 
-POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
-POSTGRES_DB=student_management
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=your_password
+```env
+DATABASE_URL=jdbc:postgresql://localhost:5432/student_management
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=your_password
+```
 
 Bước 3: Tạo Database trong PostgreSQL
 
 Mở PostgreSQL và chạy:
 
+```sql
 CREATE DATABASE student_management;
+```
+
 Bước 4: Chạy ứng dụng
+
 Linux / macOS:
+
+```bash
 ./mvnw spring-boot:run
+```
+
 Windows:
+
+```bash
 mvnw.cmd spring-boot:run
+```
+
 Bước 5: Truy cập ứng dụng
 
 Mở trình duyệt và truy cập:
 
+```
 http://localhost:8080/students
+```
 
-### Chạy bằng Docker
+### Chạy bằng Docker Compose
 
-Bước 1: Build Docker Image
-docker build -t student-management .
-Bước 2: Run Container
-docker run -p 8080:8080 \
--e DATABASE_URL=jdbc:postgresql://localhost:5432/student_management \
--e DB_USERNAME=postgres \
--e DB_PASSWORD=your_password \
-student-management
-Bước 3: Truy cập
+Bước 1: Cấu hình .env file
+
+```env
+DATABASE_URL=jdbc:postgresql://localhost:5432/student_management
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=your_password
+```
+
+Bước 2: Build Docker Image
+
+```bash
+docker build -t docker-web-app:latest .
+```
+
+Bước 3: Run bằng Docker Compose
+
+```bash
+docker-compose up
+```
+
+Bước 4: Truy cập
+
+```
 http://localhost:8080/students
+```
+
+Để dừng:
+
+```bash
+docker-compose down
+```
 
 ### Chạy phiên bản đã Deploy
 
 Public URL của hệ thống: https://student-management-api-knrt.onrender.com/students
-
-⚙️ Cấu Hình Quan Trọng
-
-Trong application.properties:
-
-spring.application.name=student-management
-server.port=${PORT:8080}
-
-spring.datasource.url=${DATABASE_URL:jdbc:postgresql://localhost:5432/student_management}
-spring.datasource.username=${DB_USERNAME:postgres}
-spring.datasource.password=${DB_PASSWORD:password}
-spring.datasource.driver-class-name=org.postgresql.Driver
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
 ## Các Lỗi Thường Gặp
 
